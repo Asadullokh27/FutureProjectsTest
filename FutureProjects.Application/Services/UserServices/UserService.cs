@@ -38,9 +38,9 @@ namespace FutureProjects.Application.Services.UserServices
             return result;
         }
 
-        public async Task<bool> Delete(Expression<Func<User, bool>> expression)
+        public async Task<bool> Delete(int id)
         {
-            var result = await _userRepository.Delete(expression);
+            var result = await _userRepository.Delete(x=>x.Id==id);
 
             return result;
         }

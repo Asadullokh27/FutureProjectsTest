@@ -25,37 +25,37 @@ namespace FutureProjects.Application.Tests.Services.UserServices
                 new UserDTO()
                 {
                     Name = "Test Product 1",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
+                    Email = "asadulloh@gmail.com",
+                    Password = "dotnet",
+                    Login = "csharp",
                     Role = "Admin"
                 },
                 new User()
                 {
-                    Name = "Test Product 34",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
+                    Name = "Test Product 1",
+                    Email = "asadulloh@gmail.com",
+                    Password = "dotnet",
+                    Login = "csharp",
                     Role = "Admin"
                 }
             };
 
             yield return new object[]
             {
-                new UserDTO()
+               new UserDTO()
                 {
                     Name = "Test Product 2",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
+                    Email = "asadulloh@gmail.com",
+                    Password = "dotnet",
+                    Login = "csharp",
                     Role = "Admin"
                 },
                 new User()
                 {
                     Name = "Test Product 2",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
+                    Email = "asadulloh@gmail.com",
+                    Password = "dotnet",
+                    Login = "csharp",
                     Role = "Admin"
                 }
             };
@@ -65,100 +65,22 @@ namespace FutureProjects.Application.Tests.Services.UserServices
                 new UserDTO()
                 {
                     Name = "Test Product 3",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
-                    Role = "Admin"
+                    Email = "asadulloh@gmail.com",
+                    Password = "dotnet",
+                    Login = "csharp",
+                    Role = "User"
                 },
                 new User()
                 {
-                    Name = "Test Product 311",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
-                    Role = "Admin"
+                    Name = "Test Product 3",
+                    Email = "asadulloh@gmail.com",
+                    Password = "dotnet",
+                    Login = "csharp",
+                    Role = "User"
                 }
             };
 
-            yield return new object[]
-            {
-                new UserDTO()
-                {
-                    Name = "Test Product 4",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
-                    Role = "Admin"
-                },
-                new User()
-                {
-                    Name = "Test Product 4",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
-                    Role = "Admin"
-                }
-            };
 
-            yield return new object[]
-            {
-                new UserDTO()
-                {
-                    Name = "Test Product 5",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
-                    Role = "Admin"
-                },
-                new User()
-                {
-                    Name = "Test Product 5",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
-                    Role = "Admin"
-                }
-            };
-
-            yield return new object[]
-            {
-                new UserDTO()
-                {
-                    Name = "Test Product 6",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
-                    Role = "Admin"
-                },
-                new User()
-                {
-                    Name = "Test Product 6",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
-                    Role = "Admin"
-                }
-            };
-
-            yield return new object[]
-            {
-                new UserDTO()
-                {
-                    Name = "Test Product 7",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
-                    Role = "Admin"
-                },
-                new User()
-                {
-                    Name = "Test Product 7",
-                    Email = "komilov@gmail.com",
-                    Password = "123",
-                    Login = "tes123",
-                    Role = "Admin"
-                }
-            };
         }
 
         // Create User Test
@@ -181,7 +103,7 @@ namespace FutureProjects.Application.Tests.Services.UserServices
             var createdUser = await controller.CreateUser(inputUser);
 
             // Assert
-            Assert.NotNull(createdUser); // Verify a user object is returned
+            Assert.NotNull(createdUser);
 
             Assert.True(CompareModels(expextedUser, createdUser));
         }
@@ -213,17 +135,13 @@ namespace FutureProjects.Application.Tests.Services.UserServices
                 Role = "Admin"
             };
 
-            _userservice.Setup(s => s.GetById(5)).ReturnsAsync(user);
+            _userservice.Setup(s => s.GetById(6)).ReturnsAsync(user);
 
             var controller = new UsersController(_userservice.Object);
 
             // Act
             var result = await controller.UserGetById(6);
 
-            //// Assert
-            //var okResult = Assert.IsType<OkObjectResult>(result);
-
-            //var returnUser = Assert.IsType<User>(okResult.Value);
 
             Assert.True(CompareModels(result, user));
         }
@@ -257,7 +175,29 @@ namespace FutureProjects.Application.Tests.Services.UserServices
 
             Assert.True(CompareModels(natija, result));
            
+        }
 
+
+        //Delete
+        [Fact]
+        public async void DeleteUser()
+        {
+            int id = 3;
+            var user = new User()
+            {
+                Id = 3,
+                Name = "Patric",
+                Email = "patric@gmail.com",
+                Password = "123",
+                Login = "patric123",
+                Role = "Admin"
+            };
+            bool result = true;
+
+            _userservice.Setup(x => x.Delete(3)).ReturnsAsync(result);
+            var controller = new UsersController(_userservice.Object);
+            var natija = await controller.DeleteUser(id);
+            Assert.Equal(result, natija);
         }
 
 

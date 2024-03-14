@@ -63,6 +63,13 @@ namespace FutureProjects.API.Controllers
 
             return result;
         }
+        [HttpDelete]
+        public async Task<bool> DeleteUser(int id)
+        {
+            var result = await _userService.Delete(id);
+
+            return result;
+        }
 
     }
 }

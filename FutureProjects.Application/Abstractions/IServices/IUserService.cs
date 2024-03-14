@@ -13,7 +13,7 @@ namespace FutureProjects.Application.Abstractions.IServices
         public Task<User> GetByEmail(string email);
         public Task<User> GetByLogin(string email);
         public Task<IEnumerable<UserViewModel>> GetAll();
-        public Task<bool> Delete(Expression<Func<User, bool>> expression);
+        public Task<bool> Delete(int id);
         public Task<User> Update(int Id, UserDTO userDTO);
     }
 }
