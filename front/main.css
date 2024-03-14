@@ -1,0 +1,46 @@
+/// Setup styles
+/// ============================
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  flex-flow: column;
+	background-color: #000;
+	width: 100%;
+  min-height: 100vh;
+  font-family: 'Lato', sans-serif;
+  color: #fff;
+  
+  h1 {
+    background-image: linear-gradient(to right, orange, orangered);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/// CSS Counter
+/// ============================
+ol {
+  counter-reset: index;
+  list-style-type: none;
+}
+
+li:before {
+  counter-increment: index;
+  content: counters(index, ".") " ";
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-image: linear-gradient(to right, orange, orangered);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
